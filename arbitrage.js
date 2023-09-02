@@ -33,7 +33,7 @@ const getPairs = async () => {
   s1.forEach((d1) => {
     s2.forEach((d2) => {
       s3.forEach((d3) => {
-        if (!(d1 == d2 || d2 == d3 || d3 == d1)) {
+        if (!(d1 === d2 || d2 === d3 || d3 === d1)) {
           let lv1 = [],
             lv2 = [],
             lv3 = [],
@@ -93,20 +93,20 @@ const processData = (data) => {
   try {
     data = JSON.parse(data);
     if (data['result'] === null) return;
-    //Update JSON
+    // Update JSON
     data.forEach((d) => {
       symValJ[d.s].bidPrice = d.b * 1;
       symValJ[d.s].askPrice = d.a * 1;
     });
-    //Perform calculation and send alerts
+    // Perform calculation and send alerts
     pairs.forEach((d) => {
-      //continue if price is not updated for any symbol
+      // Continue if price is not updated for any symbol
       if (
         symValJ[d.lv1]['bidPrice'] &&
         symValJ[d.lv2]['bidPrice'] &&
         symValJ[d.lv3]['bidPrice']
       ) {
-        //Level 1 calculation
+        // Level 1 calculation
         let lv_calc, lv_str;
         if (d.l1 === 'num') {
           lv_calc = symValJ[d.lv1]['bidPrice'];
@@ -134,7 +134,7 @@ const processData = (data) => {
             '<br/>';
         }
 
-        //Level 2 calculation
+        // Level 2 calculation
         if (d.l2 === 'num') {
           lv_calc *= symValJ[d.lv2]['bidPrice'];
           lv_str +=
@@ -161,7 +161,7 @@ const processData = (data) => {
             '<br/>';
         }
 
-        //Level 3 calculation
+        // Level 3 calculation
         if (d.l3 === 'num') {
           lv_calc *= symValJ[d.lv3]['bidPrice'];
           lv_str +=
@@ -191,7 +191,7 @@ const processData = (data) => {
       }
     });
 
-    //Send Socket
+    // Send Socket
     eventEmitter.emit(
       'ARBITRAGE',
       sort(pairs.filter((d) => d.value > 0)).desc((u) => u.value)
