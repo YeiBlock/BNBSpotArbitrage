@@ -5,8 +5,8 @@ const cors = require('cors');
 const path = require('path');
 
 const app = express();
-const server = app.listen(8080, '0.0.0.0', () =>
-  log('Arbitrage Bot has just started on port 8080. Please wait.....')
+const server = app.listen(10000, '0.0.0.0', () =>
+  log('Arbitrage Bot has just started on port 10000. Please wait.....')
 );
 
 // Set up CORS and static file serving middleware
