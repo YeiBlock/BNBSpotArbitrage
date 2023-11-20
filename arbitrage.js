@@ -14,11 +14,11 @@ const getPairs = async () => {
   const resp = await got('https://api.binance.com/api/v3/exchangeInfo');
   const eInfo = JSON.parse(resp.body);
 
-  // Step 2: Extract symbols of actively trading pairs with quoteAsset "USDT" or "FDUSD"
+  // Step 2: Extract symbols of actively trading pairs with quoteAsset "USDT" or "FDUSD" and excluding "T"
   const symbols = [
     ...new Set(
       eInfo.symbols
-        .filter((d) => d.status === 'TRADING' && (d.quoteAsset === 'USDT' || d.quoteAsset === 'FDUSD'))
+        .filter((d) => d.status === 'TRADING' && (d.quoteAsset === 'USDT' || d.quoteAsset === 'FDUSD') && d.quoteAsset !== 'T')
         .map((d) => [d.baseAsset, d.quoteAsset])
         .flat()
     ),
