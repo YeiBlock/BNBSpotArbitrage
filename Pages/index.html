@@ -14,6 +14,10 @@
           background-color: #36393f; /* Dark mode background color */
           color: #ffffff; /* Text color */
         }
+        header {
+          text-align: center;
+          margin-bottom: 2rem;
+        }
         header h1 {
           font-weight: 300;
           font-size: 2.5rem;
@@ -37,26 +41,38 @@
         table th,
         table td {
           padding: 1rem;
-          text-align: left;
+          text-align: center;
+        }
+
+        table th {
+          background: linear-gradient(90deg, #485563, #29323c); /* Gradient for table header background */
+          color: #ffffff; /* Text color */
+          font-weight: 400;
+        }
+
+        table td {
+          background: linear-gradient(90deg, #505a66, #2b3037); /* Gradient for table cell background */
+          color: #ffffff; /* Text color */
+          border-bottom: 1px solid #202225; /* Dark mode border color */
         }
     </style>
     <link rel="shortcut icon" href="JS/nerdfavicon.ico" type="image/x-icon">
     <meta charset="utf-8">
-    <title>Binance Arbitrage Scanner</title>
+    <title>CRYPTO PLAZA</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   </head>
   <body>
     <header>
-      <h1>Binance Triangular Arbitrage Scanner</h1>
-      <h3> v2.0 | 20x Faster | 2x Easier | Socket API | Live Updates </h3>
-      <p>This tool analysis all the coins and Binance exchange and provides the list of available arbitrage trade opportunities. click <a target="_blank" href="x">here</a> to watch the video and know more</p> 
+      <h1>Escaner de Arbitraje SPOT en BINANCE</h1>
+      <h3> v2.0 | 20x Mas Rapido | 2x Mas Sencillo | Actualizaciones en Vivo </h3>
+      <p>Esta Aplicacion analiza os Mercados de "USDT" Y "FDUSD" y provee una lista de OPORTUNIDADES DE ARBITRAJE DISPONIBLES</p> 
     </header>
     <table id="finTable" class="table table-bordered table-hover">
       <thead class="thead-dark">
         <tr>
-          <th>#S.No</th>
-          <th>Sequence</th>
-          <th>Profit%</th>
+          <th>#Ref</th>
+          <th>Secuencia</th>
+          <th>Margen%</th>
         </tr>
       </thead>
       <tbody id="tartbitBody">
