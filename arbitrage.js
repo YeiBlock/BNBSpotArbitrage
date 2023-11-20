@@ -10,16 +10,20 @@ let pairs = [],
 const eventEmitter = new events();
 
 const getPairs = async () => {
+  // Step 1: Fetch trading pairs information from Binance API
   const resp = await got('https://api.binance.com/api/v3/exchangeInfo');
   const eInfo = JSON.parse(resp.body);
+
+  // Step 2: Extract symbols of actively trading pairs with quoteAsset "USDT" or "FDUSD"
   const symbols = [
     ...new Set(
       eInfo.symbols
-        .filter((d) => d.status === 'TRADING')
+        .filter((d) => d.status === 'TRADING' && (d.quoteAsset === 'USDT' || d.quoteAsset === 'FDUSD'))
         .map((d) => [d.baseAsset, d.quoteAsset])
         .flat()
     ),
   ];
+  
   const validPairs = eInfo.symbols
     .filter((d) => d.status === 'TRADING')
     .map((d) => d.symbol);
